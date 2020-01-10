@@ -1,5 +1,6 @@
-from codingtempleblog import app
-from codingtempleblog.routes import *
+#Checked, correct
 
-if _name__ == "__main_":
+from codingtempleblog import app
+
+if __name__ == "__main__":
     app.run(debug = True)

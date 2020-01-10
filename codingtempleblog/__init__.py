@@ -1,5 +1,5 @@
 from flask import Flask
-
+#Checked, correct
 # Config imports
 from config import Config
 from flask_sqlalchemy import SQLAlchemy
@@ -8,16 +8,17 @@ from flask_migrate import Migrate
 # Import for Flask Login
 from flask_login import LoginManager
 
-app = Flask(__name_)
+app = Flask(__name__)
 
 app.config.from_object(Config)
 
 db = SQLAlchemy(app)
-migrate = Migrate(app,db)
+migrate = Migrate(app, db)
 
 # Login Flow config
 login = LoginManager(app)
 login.login_view = 'login' # This specifies what page to load for non-authed users
 
+#This has to be below all the app stuff that happens above
 from codingtempleblog import routes, models
 

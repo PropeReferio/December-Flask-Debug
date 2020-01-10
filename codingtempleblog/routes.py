@@ -7,6 +7,8 @@ from codingtempleblog.forms import SignUpForm, LoginForm, PostForm, PaymentForm
 # Import Models
 from codingtempleblog.models import User,Post
 
+from werkzeug.security import check_password_hash
+
 # Import Flask-Login Module/functions
 from flask_login import login_user, current_user,logout_user, login_required
 
@@ -15,7 +17,7 @@ from flask_login import login_user, current_user,logout_user, login_required
 @app.route("/")
 def home():
     posts = Post.query.all()
-    return render_template("home.html",posts = posts)
+    return render_template("home.html",post = posts) #posts or post?
 
 @app.route("/register",methods=["GET","POST"])
 def createUser():

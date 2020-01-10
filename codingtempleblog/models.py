@@ -6,6 +6,7 @@
     - Migration: Taking a Object in python(AKA class) relating that object to
     SQL code that is written from our python code.
 '''
+#Checked, correct
 
 from flask_sqlalchemy import SQLAlchemy
 from codingtempleblog import app,db
@@ -25,9 +26,9 @@ def load_user(user_id):
     return User.query.get(int(user_id))
 
 # One to Many Relationship
-class User(db.Modell):
+class User(db.Model, UserMixin):
     id = db.Column(db.Integer, primary_key = True)
-    username = db.Column(db.Stringg(150), nullable = False)
+    username = db.Column(db.String(150), nullable = False) #deleted xtra char
     email = db.Column(db.String(150), unique = True, nullable = False)
     password = db.Column(db.String(256), nullable = False)
     post = db.relationship('Post', backref = 'author', lazy = True)
@@ -44,7 +45,7 @@ class User(db.Modell):
         self.pw_hash = generate_password_hash(password)
         return self.pw_hash
 
-class Post(db.Mode l):
+class Post(db.Model):
     id = db.Column(db.Integer, primary_key = True)
     title = db.Column(db.String(200))
     content = db.Column(db.String(300))
